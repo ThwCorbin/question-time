@@ -5,13 +5,18 @@
 - onLoad()
 - GET questions from the API
 - store in a variable: questions
-- shuffle questions
+- shuffle questions: shuffle()
 - display a header: Header
 - display a question: Question
 - display an answer area: Answers
 - display answer buttons: AnswerBtn
 - display CRUD area: Edits
 - display CRUD buttons: EditBtn
+
+## Shuffle
+
+- shuffle()
+- shuffle what is passed to me and return it
 
 ## Ask question
 
