@@ -1,12 +1,32 @@
-# Pub Quiz Game API Pseudocode
+# Question Time Pseudocode
 
 ## On page load
 
+- onLoad()
+- GET questions from the API
+- store in a variable: questions
+- shuffle questions
 - display a header: Header
 - display a question: Question
-- display an anwser area: Answers
+- display an answer area: Answers
 - display answer buttons: AnswerBtn
+- display CRUD area: Edits
 - display CRUD buttons: EditBtn
+
+## Ask question
+
+- askQuestion()
+- select questionObj Object from questions Array
+- push answer Strings into answers Array
+- shuffle answer Strings
+- store index of correct answer String
+- display question String and answers Strings
+
+## Player answers question: user pushes button
+
+- If correct, the button turns green
+- If incorrect, the button turns red and the correct button turns green
+- After X seconds, then askQuestion()
 
 ## Add button
 
