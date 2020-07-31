@@ -23,14 +23,14 @@
 - askQuestion()
 - select questionObj Object from questions Array
 - push answer Strings into answers Array
-- shuffle answer Strings
+- shuffle answer Strings: shuffle()
 - store index of correct answer String
 - display question String and answers Strings
 
 ## Player answers question: user pushes button
 
-- If correct, the button turns green
-- If incorrect, the button turns red and the correct button turns green
+- If correct, turn button green
+- If incorrect, turn button red and turn the correct button green
 - After X seconds, then askQuestion()
 
 ## Add button

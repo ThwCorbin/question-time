@@ -82,15 +82,17 @@ Note: The questions I used to seed the database came from Open Trivia Database.[
 ## Variables
 
 - questions Array of Objects
+- questionObj Object
 - question String
 - answers Array of Strings
--
+- correctIDX Number
 
 ## Class
 
 ## Functions
 
 - onLoad()
+- shuffle()
 - askQuestion()
 
 ## Presentation
