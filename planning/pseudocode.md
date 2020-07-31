@@ -3,12 +3,12 @@
 ## On page load
 
 - onLoad()
-- GET questions from the API
-- store in a variable: questions
-- shuffle questions: shuffle()
-- display a header: Header
-- display a question: Question
-- display an answer area: Answers
+- GET questions from API
+- store in variable: questions Array of Objects
+- shuffle questions Array -> shuffle()
+- display header: Header
+- display question: Question
+- display answer area: Answers
 - display answer buttons: AnswerBtn
 - display CRUD area: Edits
 - display CRUD buttons: EditBtn
@@ -18,192 +18,97 @@
 - shuffle()
 - shuffle what is passed to me and return it
 
-## Ask question
+## Answer question: Event Listener in AnswerBtn
 
-- askQuestion()
-- select questionObj Object from questions Array
-- push answer Strings into answers Array
-- shuffle answer Strings: shuffle()
-- store index of correct answer String
-- display question String and answers Strings
+- onClick={handle this event} -> answerEvent()
 
-## Player answers question: user pushes button
+## Answer button clicked: Handle event
 
+- answerEvent(event)
 - If correct, turn button green
 - If incorrect, turn button red and turn the correct button green
-- After X seconds, then askQuestion()
+- after X seconds, then -> nextQuestion()
+- OR provide a next question button
 
-## Add button
+## Next question
 
-- display form that user can fill out to submit a new question
-- trigger the API to add the question and return it
-- display the added question
+- nextQuestion()
+- select questionObj Object from questions Array
+- push answer Strings into answers Array
+- shuffle answer Strings -> shuffle()
+- store index of correct answer String in correctIDX
+- display question String and answers Strings
 
-## Change button
+## Add question: Event listener in Edits
 
-- display form with current question that the user can change and submit
-- trigger the API to update and return it
-- display the updated message
+- onClick={ handle this event} -> addEvent()
 
-## Delete button
+## Add button clicked: Handle event
 
-- delete the question from the database
-- display confirmation: "You will not see that question again"
-- after X seconds, display the next question
+- addEvent(event)
+- display add question form: Form
 
-<!-- ## Create db directory data files
+## User fills out form to add question: Event listener in Form
 
-- create ./db/get-data.js, ./db/historyData.json, and ./db/mythologyData.json
-- ./db/get-data.js
+- onClick={ handle this event } -> submitFormAdd()
 
-- require node fs module
+## Submit form add clicked: Handle event
 
-- require above files and assign to variables
+- submitFormAdd(event)
+- axios.post form data to API to add a question
+- then wait for API to return added question Object
+- unshift question Object on questions Array
+- then display the added question
 
-- function: fetch/axios from urls
+## Edit question: Event listener in Edits
 
-- 50 results each for History and Mythology categories
+- onClick={ handle this event} -> editEvent()
 
-- History url: https://opentdb.com/api.php?amount=50&category=23
+## Edit button clicked: Handle event
 
-- Mythology url: https://opentdb.com/api.php?amount=50&category=20
+- editEvent(event)
+- display edit question form: Form
 
-- then: write the data to json files
+## User fills out form to edit question: Event listener in Form
 
-- fs.writeFile(file, data[, options], callback)
+- onClick={ handle this event } -> submitFormEdit()
 
-## Retrieve data from an API and save to .json files
+## Submit form edit clicked: Handle event
 
-- Run node db/get-data.js in the terminal
+- submitFormEdit(event)
+- axios.put form data to API to edit a question by ID
+- then wait for API to return edited question Object
+- then shift first question Object off questions Array
+- then unshift returned edited question Object on questions Array
+- then display added question
 
-- returns two arrays with 50 questions each:
+## Delete question: Event listener in Edits
 
-```json
-[
-	{
-		"category": "History",
-		"type": "multiple",
-		"difficulty": "medium",
-		"question": "In what year did Neil Armstrong and Buzz Aldrin land on the moon?",
-		"correct_answer": "1969",
-		"incorrect_answers": ["1965", "1966", "1973"]
-	},
-	{
-		// 50 History question objects
-	}
-]
-```
+- onClick={ handle this event} -> deleteEvent()
 
--- use fs.writefile to write data to ./db/historyData.json and ./db/mythologyData.json
+## Delete button clicked: Handle event
 
-## Define connection
+- deleteEvent(event)
+- display delete question form: Form
 
-- db/connection.js
+## User confirms delete this question: Event listener in Form
 
-- run mongod in the terminal to connect to MongoDB
+- onClick={ handle this event } -> submitFormDelete()
 
-- require mongoose
+## Submit form delete clicked: Handle event
 
-- connect mongoose to local host which creates the database categorys (which I could change to categories)
+- submitFormDelete(event)
+- axios.delete form data to API to delete a question by ID
+- then wait for API to return deleted question Object
+- then shift first question Object off questions Array
+- then display confirmation: "You will not see that question again"
+- after X seconds, then -> nextQuestion()
 
-- exports mongoose
+## User cancels delete this question: Event listener in Form
 
-## Define Mongoose Schema
+- onClick={ handle this event } -> cancelDelete()
 
-- models/Category.js
+## Cancel button clicked: Handle event
 
-- require db/connection.js and assign to mongoose constant
-
-- assign mongoose.Schema to a constant Schema
-
-- initialize schema with a configuration object
-
-- categorySchema will have 5 properties
-
-1. category String
-2. difficulty String
-3. question String
-4. answer String
-5. incorrect Array of three Strings
-
-## Define Mongoose Model
-
-- models/Category.js
-
-- assign a mongoose model to Category constant using the categorySchema
-
-- exports the Category model
-
-## Seed a database
-
-- db/seed.js
-
-- require and assign Category model to a constant
-
-- require and assign ./db/historyData.json and ./db/mythologyData.json to constants
-
-- delete data from the categorys/categories database via the Catagory model
-
-- create data via the Category model passing the jsonHistory and jsonMythology constants
-
-- then print to the console and exit the process
-
-- run db/seeds.js in terminal to seed categories/catagorys
-
-## Set Up Express
-
-- index.js
-
-- require and assign express to an app constant
-
-- invoke app
-
-- app listens on port 4000 and prints affirmative message in the console
-
-- run nodemon index.js in the terminal to check code
-
-## Create routes
-
-### root route
-
-- create a GET root route passing "/" and request/response objects
-
-- root route responds with a message to display ("Welcome to the Pub Quiz")
-
-### history route
-
-- GET history route passing "/history" and req/resp objects
-
-- find the history questions in the database
-
-- route responds with history questions
-
-### history create route
-
-- require and use body-parser
-
-- POST history route passing "/history" and req/resp objects
-
-- create a new history question object passing request body
-
-- then print the new question object
-
-### history update route
-
-- PUT history route passing "/history/:id" and req/resp objects
-
-- find one question by id and update the difficulty property
-
-- then print the updated object {new: true}
-
-### history delete route
-
-- DEL history route passing "/history/:id" and req/resp objects
-
-- find one question by id and remove it
-
-- then print the deleted object
-
-### mythology route (Silver)
-
-### history/difficulty route (Gold) -->
+- cancelDelete(event)
+- display "not" deleted question

@@ -2,7 +2,7 @@
 
 ## Brief
 
-I will Build a front end that uses a back end I built for an API project called [pub-quiz](https://github.com/ThwCorbin/pub-quiz "repo on GitHub"). The JSON API I built provides access to trivia questions for a pub quiz game.[1] For the purposes of this project, I will use one trivia category: History. A user will see a history question on page load. The user can answer the question and then see the answer. The user can request another question. The user can change or delete the question. The user can add a question. The user has access to the Pub Quiz API! Scary power.
+I will Build a front end that uses a back end I built for an API project called [pub-quiz](https://github.com/ThwCorbin/pub-quiz "repo on GitHub"). The JSON API I built provides access to trivia questions for a pub quiz game.[1] For the purposes of this project, I will use one trivia category: History. A user will see a history question on page load. The user can answer the question and then see the answer. The user can request another question. The user can change or delete the question. The user can add a question. The user has access to the Pub Quiz API! Scary.
 
 Note: The questions I used to seed the database came from Open Trivia Database.[2]
 
@@ -13,30 +13,30 @@ Note: The questions I used to seed the database came from Open Trivia Database.[
 - React front end contacts the Pub Quiz API on page load
 - API responds with 50 history questions
 - Front end displays a question and a list of answers
-- User can push button to answer
+- User can click button to answer
 - User can see the correct answer
 - User can see the next question
-- User can carry out CRUD operations by pushing an Add, Change, or Delete button
+- User can carry out CRUD operations by clicking an Add, Change, or Delete button
 - API responds on completion of CRUD operations, and front end displays result
+- Website displays well on a 768x1024 screen and larger
 - CRUD form is basic
 - Front end is deployed
 - README is well documented
-- Website displays well on a 768x1024 screen
 
 ### Silver: looks and works better
 
+- Website displays well on small phones
 - CRUD form is fancy
-- Website displays well on small phones and large screens
+- Add another trivia question category (e.g Mythology)
 - Track right and wrong answers and display results
 - Show how many questions are left out of X questions
-- Add another trivia question category
-- Add search
 
 ### Gold: bells and whistles
 
 - Return questions based on difficulty level
 - Make questions progessively harder
-- Use five or more categories of questions
+- Add five or more trivia question categories
+- Allow user to select category
 - Store user data even if page reloads
 
 ## Data
@@ -45,8 +45,8 @@ Note: The questions I used to seed the database came from Open Trivia Database.[
 - Mongoose
 - Express
 - Node.js
-- API served by Heroku: [Pub Quiz API](https://pub-quiz-game.herokuapp.com/history "JSON API history route")
-- CRUD operations' documentation: [Pub Quiz API Docs](https://pub-quiz-game.herokuapp.com/history API documentation)
+- API served by Heroku: [Pub Quiz API](https://pub-quiz-game.herokuapp.com/history "JSON API history route") response for /history route
+- API documentation: [Pub Quiz API Docs](https://pub-quiz-game.herokuapp.com/doc "API documentation")
 - API returns results as JSON in this format:
 
 ```json
@@ -72,12 +72,18 @@ Note: The questions I used to seed the database came from Open Trivia Database.[
 
 ## Components
 
-- Header
-- Question
-- Answers
-- AnswerBtn
-- Edits
-- EditBtn
+- Header - header > h1
+- Question - div > p
+- Answers - div > ul > li
+- AnswerBtn - div > button
+- Edits - div > ul > li
+- EditBtn - div > button
+- Form - form
+- Input - div > input
+- TextArea - div > input
+- Submit - div > button
+- Cancel - div > button
+- Next - div > button
 
 ## Variables
 
@@ -87,23 +93,31 @@ Note: The questions I used to seed the database came from Open Trivia Database.[
 - answers Array of Strings
 - correctIDX Number
 
-## Class
+<!-- ## Class -->
 
 ## Functions
 
 - onLoad()
 - shuffle()
-- askQuestion()
+- answerEvent()
+- nextQuestion()
+- addEvent()
+- submitFormAdd()
+- editEvent()
+- submitFormEdit()
+- deleteEvent()
+- submitFormDelete()
+- cancelDelete()
 
-## Presentation
+<!-- ## Presentation -->
 
-## Views
+<!-- ## Views -->
 
-## Style
+<!-- ## Style -->
 
-## DOM Manipulation
+<!-- ## DOM Manipulation -->
 
-## Resources
+<!-- ## Resources -->
 
 ## Footnotes
 
