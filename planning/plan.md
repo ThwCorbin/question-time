@@ -12,8 +12,13 @@ Note: The questions I used to seed the database came from Open Trivia Database.[
 
 - React front end contacts the Pub Quiz API on page load
 - API responds with 50 history questions
-- User can carry out CRUD operations from the user interface
-- API responds on completion of CRUD operations
+- Front end displays one question and a list of answers (buttons)
+- User pushes button to answer
+- If correct, the button turns green
+- If incorrect, the button turns red and the correct button turns green
+- After X seconds, the user sees the next question
+- User can carry out CRUD operations by pushing an Add, Change, or Delete button
+- API responds on completion of CRUD operations, and front end displays result
 - Front end is deployed
 - README is well documented
 - Website displays well on a 768x1024 screen
@@ -23,6 +28,7 @@ Note: The questions I used to seed the database came from Open Trivia Database.[
 - Use a CSS framework (BronzePlus)
 - Website displays well on small phones and large screens
 - Track right and wrong answers and display results
+- Show how many questions are left out of X questions
 - Add another trivia question category
 - Add search
 
@@ -66,7 +72,18 @@ Note: The questions I used to seed the database came from Open Trivia Database.[
 
 ## Components
 
+- Header
+- Question
+- Answers
+- AnswerBtn
+- EditBtn
+
 ## Variables
+
+- questions Array of Objects
+- question String
+- answers Array of Strings
+-
 
 ## Class
 

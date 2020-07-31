@@ -1,8 +1,32 @@
 # Pub Quiz Game API Pseudocode
 
-- Note: start with just the History category; if there is time complete the Mythology category
+## On page load
 
-## Create db directory data files
+- display a header: Header
+- display a question: Question
+- display an anwser area: Answers
+- display answer buttons: AnswerBtn
+- display CRUD buttons: EditBtn
+
+## Add button
+
+- display form that user can fill out to submit a new question
+- trigger the API to add the question and return it
+- display the added question
+
+## Change button
+
+- display form with current question that the user can change and submit
+- trigger the API to update and return it
+- display the updated message
+
+## Delete button
+
+- delete the question from the database
+- display confirmation: "You will not see that question again"
+- after X seconds, display the next question
+
+<!-- ## Create db directory data files
 
 - create ./db/get-data.js, ./db/historyData.json, and ./db/mythologyData.json
 - ./db/get-data.js
@@ -157,4 +181,4 @@
 
 ### mythology route (Silver)
 
-### history/difficulty route (Gold)
+### history/difficulty route (Gold) -->
