@@ -63,7 +63,7 @@ class App extends Component {
 
 	render() {
 		//* set this.state.questions to variables to avoid undefined
-		let id;
+		// let id;
 		let question;
 		let answer;
 		let answers = [];
@@ -72,7 +72,7 @@ class App extends Component {
 		//* check if questions object is defined
 		//* then assign state properties to variables
 		if (this.state.questions[0]) {
-			id = this.state.questions[0]._id;
+			// id = this.state.questions[0]._id;
 			question = this.state.questions[0].question;
 			answer = this.state.questions[0].correct_answer;
 			wrongAnswers = this.state.questions[0].incorrect_answers.slice();
@@ -111,3 +111,20 @@ export default App;
 // ASCII codes in question Strings
 // &#039; -> '
 // &amp; -> & ->  Heckler
+// &eacute
+// &quot;
+
+// .then((data) => {
+// 	let dataFix;
+// 	dataFix = data.map((object) => {
+// 		let string1, string2, string3;
+// 		string1 = object.question.replace(/&#039;/g, "'");
+// 		object.question = string1;
+// 		string2 = object.question.replace(/&eacute;/g, "e");
+// 		object.question = string2;
+// 		string3 = object.question.replace(/&quot;/g, '"');
+// 		console.log(string3);
+// 		return (object.question = string3);
+// 	});
+// 	return dataFix;
+// })
