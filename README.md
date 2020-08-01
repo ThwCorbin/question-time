@@ -1,16 +1,16 @@
 # Question Time
 
-<!-- A JSON API of trivia questions for a [pub quiz](https://chambers.co.uk/search/?query=pub+quiz&title=21st, "Chambers definition of pub quiz") game.[1] This version has one category: history. This is the route: `/history`.
+Answer trivia questions! If you don't like the questions, you can change or delete them. You can even add your own questions. You get to ask (and answer) the questions you want during Question Time!
 
-Website: https://pub-quiz-game.herokuapp.com/history
+Website:
 
-Repo: https://github.com/ThwCorbin/pub-quiz
+Repo: https://github.com/ThwCorbin/question-time
 
 API documentation: http://pub-quiz-game.herokuapp.com/doc -->
 
 ## Description
 
-<!-- The website presents a user five fab cocktails with tabs to select each one. User can click a button to load five more cocktails. -->
+Question Time is a React front end that uses a MongoDB, Express, and Node.js back end that I built for an API project called [pub-quiz](https://github.com/ThwCorbin/pub-quiz "repo on GitHub"). The JSON API I built provides access to trivia questions for a pub quiz game.[1] For the purposes of this project, I will use one trivia category: History. A user will see a history question on page load. The user can answer the question and then see the answer. The user can request another question. The user can change or delete the question. The user can add a question. The user has access to the Pub Quiz API! Scary.
 
 <!-- ![Five Fab Cocktails screenshot](./five-fab-screenshot.png "Five Fab Cocktails") -->
 
@@ -23,14 +23,13 @@ This is my seventh project for [General Assembly's](https://generalassemb.ly/ "G
 - Express
 - React
 - Node.js
-- Material-UI
 - JavaScript
 - HTML
 - CSS
 
 ## Features
 
-<!-- I developed a bronze/silver/gold plan, which is available in the planning directory in this repo. I completed all bronze level features. I planned to add more categories of questions (e.g. Mythology, General Knowledge, etc.) in the silver and gold plans, but I've decided that for the purposes of this project (CRUD operations) one category will suffice. I will develop a front end for my next project to work with this back end. -->
+I developed a bronze/silver/gold plan, which is available in the planning directory in this repo. I am currently working on bronze level features.
 
 ## Usage
 
