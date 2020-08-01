@@ -38,6 +38,13 @@ body {
 }
 
 .ul-answers {
-	list-style: none;
 	margin-top: 3rem;
+}
+
+.ul-crud {
+	width: 24rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 3em;
 }

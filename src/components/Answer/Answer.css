@@ -1,5 +1,6 @@
 .li-answer {
 	text-align: center;
+	list-style: none;
 	color: var(--blue);
 	background-color: var(--silver);
 	padding: 1rem;

@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Question from "../Question/Question";
 import Answer from "../Answer/Answer";
+import Button from "../Button/Button";
 
 let url = "https://pub-quiz-game.herokuapp.com/history";
 
@@ -18,8 +19,20 @@ class App extends Component {
 		};
 	} //constructor
 
+	// deleteEvent = (e) => {
+	// 	console.log(e);
+	// }; //deleteEvent
+
+	// editEvent = (e) => {
+	// 	console.log(e);
+	// }; //editEvent
+
+	handleCrudEvent = (e) => {
+		console.log(e);
+	}; //addEvent
+
 	answerEvent = (e) => {
-		// code
+		console.log(e);
 	}; //answerEvent
 
 	//* shuffle a something array and return it
@@ -40,7 +53,6 @@ class App extends Component {
 				something[randomUnshuffledThing],
 			];
 		}
-
 		return something;
 	}; //shuffle
 
@@ -90,15 +102,25 @@ class App extends Component {
 			// }
 			return <Answer className="li-answer" key={idx} answer={ans} />;
 		});
+		let buttonArr = ["add", "edit", "delete"];
+		let buttonList = buttonArr.map((btnName) => {
+			return (
+				<Button
+					btnClass={`li-btn li-btn-` + btnName}
+					btnName={btnName.toUpperCase()}
+					btnCallback={this.handleCrudEvent}
+				/>
+			);
+		}); //buttonList
 
 		return (
 			<div className="App">
 				<Header />
 				<Question question={question} />
 				<ul className="ul-answers">{answersList}</ul>
-				{/* <Button btnAnswer={this.answerEvent} /> */}
+				<ul className="ul-crud">{buttonList}</ul>
 			</div>
-		);
+		); //return
 	} //render
 
 	componentDidMount() {
