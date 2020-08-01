@@ -5,10 +5,10 @@ header {
 }
 
 .h1-title {
-	color: var(--martinez);
+	color: var(--blue);
 	margin-top: 1em;
 }
 
 .h2-subtitle {
-	color: var(--sour);
+	color: var(--red-purple);
 }

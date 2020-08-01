@@ -1,0 +1,38 @@
+/** Variables ############### */
+:root {
+	--white: #ffffff;
+	--white_off: #f0f8ff;
+	--goldfish: #c6955a;
+	--pink: #c46f8e;
+	--pink-dark: #a6235e;
+	--red-purple: #730754;
+	--blue: #2958aa;
+	--blue-medium: #00248f;
+	--blue-dark: #001d81;
+	--silver: #c0c0c0;
+	--gray: #788ea1;
+	--gray-dark: #504c4e;
+	--black: #000000;
+}
+
+/** Reset ###############  */
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+/** Body ********************* */
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	width: 100vw;
+	height: 100vh;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
