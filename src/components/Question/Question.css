@@ -1,4 +1,6 @@
 .p-question {
+	width: 20rem;
+	text-align: center;
 	color: var(--gray-dark);
 	background-color: var(--white-off);
 	margin-top: 5rem;

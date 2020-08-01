@@ -81,11 +81,14 @@ class App extends Component {
 
 		//* Check if answers has length
 		//* Build list of answers
-		let answersList = answers.map((ans) => {
-			if (ans === answer) {
-			} else {
-			}
-			return <Answer className="li-answer" answer={ans} />;
+		let answersList = answers.map((ans, idx) => {
+			// if (ans.includes(answer)) {
+			// 	return (
+			// 		<Answer className="li-answer li-correct" key={idx} answer={ans} />
+			// 	);
+			// } else {
+			// }
+			return <Answer className="li-answer" key={idx} answer={ans} />;
 		});
 
 		return (
@@ -107,3 +110,4 @@ export default App;
 
 // ASCII codes in question Strings
 // &#039; -> '
+// &amp; -> & ->  Heckler
