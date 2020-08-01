@@ -1,0 +1,5 @@
+.p-question {
+	color: var(--gray-dark);
+	background-color: var(--white-off);
+	margin-top: 5rem;
+}
