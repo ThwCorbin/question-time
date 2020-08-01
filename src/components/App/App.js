@@ -77,13 +77,15 @@ class App extends Component {
 			answer = this.state.questions[0].correct_answer;
 			wrongAnswers = this.state.questions[0].incorrect_answers.slice();
 			answers = this.shuffle([answer, ...wrongAnswers]);
-			console.log(answers);
 		}
 
 		//* Check if answers has length
 		//* Build list of answers
 		let answersList = answers.map((ans) => {
-			return <Answer answer={ans} />;
+			if (ans === answer) {
+			} else {
+			}
+			return <Answer className="li-answer" answer={ans} />;
 		});
 
 		return (

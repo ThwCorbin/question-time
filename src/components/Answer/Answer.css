@@ -1,4 +1,13 @@
-.p-question {
-	color: var(--gray);
-	background-color: var(--white-off);
+.li-answer {
+	text-align: center;
+	color: var(--blue);
+	background-color: var(--silver);
+	padding: 1rem;
+	margin: 1rem;
+	border: 0.1rem solid var(--gray);
+	border-radius: 5px;
+}
+
+.li-answer:hover {
+	filter: brightness(0.95);
 }
