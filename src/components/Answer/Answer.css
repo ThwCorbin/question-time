@@ -1,4 +1,5 @@
 .li-answer {
+	min-width: 15em;
 	text-align: center;
 	list-style: none;
 	color: var(--blue);

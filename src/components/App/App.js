@@ -15,6 +15,7 @@ class App extends Component {
 			questionObj: {},
 			question: "",
 			answers: [],
+			answer: "",
 			correctIdx: 0,
 		};
 	} //constructor
@@ -31,9 +32,22 @@ class App extends Component {
 		console.log(e);
 	}; //addEvent
 
-	answerEvent = (e) => {
-		console.log(e);
+	handleAnswerEvent = (e) => {
+		//* if clicked answer is wrong
+		//* turn it red
+		if (e.target.textContent !== this.state.answer) {
+			console.log(`${e.target.textContent} is red/not correct`);
+		}
+		//* turn the correct answer green
+		console.log(`${this.state.answer} is green/correct`);
 	}; //answerEvent
+
+	changeState = (answers, correctIdx) => {
+		this.setState({
+			answers: answers,
+			correctIdx: correctIdx,
+		});
+	};
 
 	//* shuffle a something array and return it
 	shuffle = (something) => {
@@ -69,46 +83,45 @@ class App extends Component {
 			.then((questions) => {
 				this.setState({
 					questions: questions,
+					questionObj: questions[0],
+					question: questions[0].question,
+					answer: questions[0].correct_answer,
+					answers: [
+						questions[0].correct_answer,
+						...questions[0].incorrect_answers,
+					],
+					correctIdx: 0,
 				}); //setState
 			});
 	}; //getQuestions
 
 	render() {
-		//* set this.state.questions to variables to avoid undefined
-		// let id;
-		let question;
-		let answer;
-		let answers = [];
-		let wrongAnswers = [];
-
-		//* check if questions object is defined
-		//* then assign state properties to variables
-		if (this.state.questions[0]) {
-			// id = this.state.questions[0]._id;
-			question = this.state.questions[0].question;
-			answer = this.state.questions[0].correct_answer;
-			wrongAnswers = this.state.questions[0].incorrect_answers.slice();
-			answers = this.shuffle([answer, ...wrongAnswers]);
+		//* check if answers array is defined
+		//* then build list of answers
+		let answersList;
+		if (this.state.answers) {
+			let answersArr = this.state.answers;
+			answersList = answersArr.map((answer, idx) => {
+				return (
+					<Answer
+						className="li-answer"
+						answer={answer}
+						btnCallback={this.handleAnswerEvent}
+						key={idx}
+					/>
+				);
+			}); //answerList
 		}
 
-		//* Check if answers has length
-		//* Build list of answers
-		let answersList = answers.map((ans, idx) => {
-			// if (ans.includes(answer)) {
-			// 	return (
-			// 		<Answer className="li-answer li-correct" key={idx} answer={ans} />
-			// 	);
-			// } else {
-			// }
-			return <Answer className="li-answer" key={idx} answer={ans} />;
-		});
+		//* build list buttons
 		let buttonArr = ["add", "edit", "delete"];
-		let buttonList = buttonArr.map((btnName) => {
+		let buttonList = buttonArr.map((btnName, idx) => {
 			return (
 				<Button
 					btnClass={`li-btn li-btn-` + btnName}
 					btnName={btnName.toUpperCase()}
 					btnCallback={this.handleCrudEvent}
+					key={idx}
 				/>
 			);
 		}); //buttonList
@@ -116,7 +129,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-				<Question question={question} />
+				<Question question={this.state.question} />
 				<ul className="ul-answers">{answersList}</ul>
 				<ul className="ul-crud">{buttonList}</ul>
 			</div>

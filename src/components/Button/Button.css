@@ -4,7 +4,7 @@
 	list-style: none;
 	color: var(--red-purple);
 	background-color: var(--pink);
-	padding: 1em;
+	padding: 0.5em;
 	border-radius: 5px;
 	border: 0.1rem solid var(--gray);
 }
