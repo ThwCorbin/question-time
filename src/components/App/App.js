@@ -28,8 +28,32 @@ class App extends Component {
 	// 	console.log(e);
 	// }; //editEvent
 
+	nextQuestion = () => {
+		//* move current question to the end of the questions array
+		let lastQuestion = this.state.questions.shift();
+		let questions = this.state.questions;
+		questions.push(lastQuestion);
+		//* set state with new question object
+		this.setState(
+			{
+				questions: questions,
+				questionObj: questions[0],
+				question: questions[0].question,
+				answer: questions[0].correct_answer,
+				answers: [
+					questions[0].correct_answer,
+					...questions[0].incorrect_answers,
+				],
+				correctIdx: 0,
+			},
+			() => {
+				//* turnoff the red/green ??? or in previous function ???
+			}
+		);
+	};
+
 	handleCrudEvent = (e) => {
-		console.log(e);
+		console.log(e.target.textContent);
 	}; //addEvent
 
 	handleAnswerEvent = (e) => {
@@ -40,14 +64,8 @@ class App extends Component {
 		}
 		//* turn the correct answer green
 		console.log(`${this.state.answer} is green/correct`);
+		setTimeout(this.nextQuestion, 3000);
 	}; //answerEvent
-
-	changeState = (answers, correctIdx) => {
-		this.setState({
-			answers: answers,
-			correctIdx: correctIdx,
-		});
-	};
 
 	//* shuffle a something array and return it
 	shuffle = (something) => {
