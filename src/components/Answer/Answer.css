@@ -1,7 +1,8 @@
 .li-answer {
 	min-width: 15em;
-	text-align: center;
 	list-style: none;
+	text-align: center;
+	font-size: 1.25rem;
 	color: var(--blue);
 	background-color: var(--silver);
 	padding: 1rem;
@@ -12,12 +13,4 @@
 
 .li-answer:hover {
 	filter: brightness(0.95);
-}
-
-.red {
-	background-color: var(--red-incorrect);
-}
-
-.green {
-	background-color: var(--green-correct);
 }

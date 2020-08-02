@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import Modal from "../Modal/Modal";
 import Header from "../Header/Header";
 import Question from "../Question/Question";
 import Answer from "../Answer/Answer";
@@ -43,6 +44,7 @@ class App extends Component {
 		let answer = questions[0].correct_answer;
 		let answers = this.shuffle([answer, ...questions[0].incorrect_answers]);
 		this.setState({
+			activeModal: false,
 			questions: questions,
 			questionObj: questions[0],
 			question: questions[0].question,
@@ -155,7 +157,11 @@ class App extends Component {
 				<Header />
 				<Question question={this.state.question} />
 				<ul className="ul-answers">{answersList}</ul>
+				<p className="youCrud">
+					Don't like the question? Change it or add one of your own!
+				</p>
 				<ul className="ul-crud">{buttonList}</ul>
+				<Modal active={this.state.activeModal} />
 			</div>
 		); //return
 	} //render

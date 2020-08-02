@@ -1,7 +1,7 @@
 /** Variables ############### */
 :root {
 	--white: #ffffff;
-	--white_off: #f0f8ff;
+	--white-off: #f0f8ff;
 	--goldfish: #c6955a;
 	--pink: #c46f8e;
 	--pink-dark: #a6235e;
@@ -41,10 +41,17 @@ body {
 	margin-top: 3rem;
 }
 
+.youCrud {
+	width: 24rem;
+	text-align: center;
+	font-size: 1.5rem;
+	color: var(--blue-medium);
+	margin: 3em 1em 1em;
+}
+
 .ul-crud {
 	width: 24rem;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	margin-top: 3em;
 }
