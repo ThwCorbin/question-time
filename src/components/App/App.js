@@ -28,28 +28,28 @@ class App extends Component {
 	// 	console.log(e);
 	// }; //editEvent
 
-	nextQuestion = () => {
+	nextQuestion = (answersHTMLCollection) => {
+		//* reset the li color and background color
+		let listOfLi = Array.from(answersHTMLCollection);
+		listOfLi.forEach((li) => {
+			li.style.backgroundColor = "#c0c0c0";
+			li.style.color = "#2958aa";
+		});
 		//* move current question to the end of the questions array
 		let lastQuestion = this.state.questions.shift();
 		let questions = this.state.questions;
 		questions.push(lastQuestion);
 		//* set state with new question object
-		this.setState(
-			{
-				questions: questions,
-				questionObj: questions[0],
-				question: questions[0].question,
-				answer: questions[0].correct_answer,
-				answers: [
-					questions[0].correct_answer,
-					...questions[0].incorrect_answers,
-				],
-				correctIdx: 0,
-			},
-			() => {
-				//* turnoff the red/green ??? or in previous function ???
-			}
-		);
+		let answer = questions[0].correct_answer;
+		let answers = this.shuffle([answer, ...questions[0].incorrect_answers]);
+		this.setState({
+			questions: questions,
+			questionObj: questions[0],
+			question: questions[0].question,
+			answer: answer,
+			answers: answers,
+			correctIdx: answers.indexOf(answer),
+		}); //setState
 	};
 
 	handleCrudEvent = (e) => {
@@ -57,14 +57,21 @@ class App extends Component {
 	}; //addEvent
 
 	handleAnswerEvent = (e) => {
+		let answers = e.target.parentElement.children;
 		//* if clicked answer is wrong
 		//* turn it red
 		if (e.target.textContent !== this.state.answer) {
-			console.log(`${e.target.textContent} is red/not correct`);
+			e.target.style.backgroundColor = "red";
+			e.target.style.color = "white";
 		}
 		//* turn the correct answer green
-		console.log(`${this.state.answer} is green/correct`);
-		setTimeout(this.nextQuestion, 3000);
+		answers[this.state.correctIdx].style.backgroundColor = "green";
+		answers[this.state.correctIdx].style.color = "white";
+
+		//* present next question after 3 seconds
+		setTimeout(() => {
+			this.nextQuestion(answers);
+		}, 3000);
 	}; //answerEvent
 
 	//* shuffle a something array and return it
@@ -99,16 +106,15 @@ class App extends Component {
 				return questions;
 			})
 			.then((questions) => {
+				let answer = questions[0].correct_answer;
+				let answers = this.shuffle([answer, ...questions[0].incorrect_answers]);
 				this.setState({
 					questions: questions,
 					questionObj: questions[0],
 					question: questions[0].question,
-					answer: questions[0].correct_answer,
-					answers: [
-						questions[0].correct_answer,
-						...questions[0].incorrect_answers,
-					],
-					correctIdx: 0,
+					answer: answer,
+					answers: answers,
+					correctIdx: answers.indexOf(answer),
 				}); //setState
 			});
 	}; //getQuestions

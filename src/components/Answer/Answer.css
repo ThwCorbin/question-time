@@ -13,3 +13,11 @@
 .li-answer:hover {
 	filter: brightness(0.95);
 }
+
+.red {
+	background-color: var(--red-incorrect);
+}
+
+.green {
+	background-color: var(--green-correct);
+}
