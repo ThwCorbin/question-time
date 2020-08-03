@@ -1,0 +1,23 @@
+.form > label {
+	color: var(--blue);
+}
+
+.form > label > input {
+	width: 95%;
+	margin-top: 0.25rem;
+}
+
+.form > br {
+	margin-bottom: 1rem;
+}
+
+.cancel {
+	width: 3rem;
+	font-size: 0.7rem;
+	text-align: center;
+	/* background-color: var(--silver); */
+	padding: 0.15rem;
+	border: 0.5px solid var(--silver);
+	margin-top: 1rem;
+	border-radius: 3px;
+}
