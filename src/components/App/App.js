@@ -12,6 +12,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			activeModal: false,
 			questions: [],
 			questionObj: {},
 			question: "",
@@ -29,6 +30,13 @@ class App extends Component {
 	// 	console.log(e);
 	// }; //editEvent
 
+	// React Docs toggle example: https://reactjs.org/docs/handling-events.html
+	toggleModal = () => {
+		this.setState({
+			activeModal: !this.state.activeModal,
+		});
+	};
+
 	nextQuestion = (answersHTMLCollection) => {
 		//* reset the li color and background color
 		let listOfLi = Array.from(answersHTMLCollection);
@@ -44,7 +52,6 @@ class App extends Component {
 		let answer = questions[0].correct_answer;
 		let answers = this.shuffle([answer, ...questions[0].incorrect_answers]);
 		this.setState({
-			activeModal: false,
 			questions: questions,
 			questionObj: questions[0],
 			question: questions[0].question,
@@ -56,6 +63,7 @@ class App extends Component {
 
 	handleCrudEvent = (e) => {
 		console.log(e.target.textContent);
+		this.toggleModal();
 	}; //addEvent
 
 	handleAnswerEvent = (e) => {
@@ -154,6 +162,10 @@ class App extends Component {
 
 		return (
 			<div className="App">
+				<Modal
+					activeModal={this.state.activeModal}
+					modalCallback={this.toggleModal}
+				/>
 				<Header />
 				<Question question={this.state.question} />
 				<ul className="ul-answers">{answersList}</ul>
@@ -161,7 +173,6 @@ class App extends Component {
 					Don't like the question? Change it or add one of your own!
 				</p>
 				<ul className="ul-crud">{buttonList}</ul>
-				<Modal active={this.state.activeModal} />
 			</div>
 		); //return
 	} //render
