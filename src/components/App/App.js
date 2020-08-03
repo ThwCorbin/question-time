@@ -30,18 +30,6 @@ class App extends Component {
 	// 	console.log(e);
 	// }; //editEvent
 
-	// 	{
-	//     "incorrect_answers": [
-	//         "blue",
-	//         "red",
-	//         "green"
-	//     ],
-	//     "category": "History",
-	//     "type": "multiple",
-	//     "difficulty": "hard",
-	//     "question": "What is my favourite colour?",
-	//     "correct_answer": "pink"
-	// }
 	// buildJSON = (question, correct_answer, incorrect_answers) => {
 	// 	let stringJSON = {
 	// 		incorrect_answers: [...incorrect_answers],
