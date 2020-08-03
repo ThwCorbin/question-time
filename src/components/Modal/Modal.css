@@ -12,3 +12,9 @@
 	z-index: 1;
 	overflow: auto;
 }
+
+.modal-content {
+	width: 500px;
+	min-height: 300px;
+	background-color: var(--white);
+}

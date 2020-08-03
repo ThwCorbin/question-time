@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./Modal.css";
+import Form from "../";
 
 // let App = document.querySelector(".App");
 
@@ -9,7 +10,8 @@ function Modal(props) {
 	if (activeModal) {
 		return ReactDOM.createPortal(
 			<div className="modal" onClick={modalCallback}>
-				Hiya Luna!
+				<div className="modal-content">Hiya Luna!</div>
+				<Form />
 			</div>,
 			document.getElementById("root")
 		);
