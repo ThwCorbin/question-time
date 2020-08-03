@@ -6,7 +6,9 @@ class Form extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: "",
+			// value: "",
+			question: "",
+			answers: "",
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -14,12 +16,12 @@ class Form extends Component {
 	}
 
 	handleChange(e) {
-		this.setState({ value: e.target.value });
+		this.setState({ [e.target.name]: e.target.value });
 	}
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(e);
+		this.props.modalCallback(this.state.question, this.state.answers);
 	}
 
 	render() {
@@ -32,18 +34,19 @@ class Form extends Component {
 					<input
 						name="question"
 						type="text"
-						value={this.state.value}
+						value={this.state.question}
 						onChange={this.handleChange}
 					/>
 				</label>
 				<br />
 				<label>
-					Answers: Up to 4 separated by commas - first is correct
+					Answers:
 					<br />
 					<input
 						name="answers"
 						type="text"
-						value={this.state.value}
+						value={this.state.answers}
+						placeholder="Up to 4 separated by commas - first is correct"
 						onChange={this.handleChange}
 					/>
 				</label>

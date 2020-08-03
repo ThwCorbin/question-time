@@ -30,8 +30,45 @@ class App extends Component {
 	// 	console.log(e);
 	// }; //editEvent
 
+	// 	{
+	//     "incorrect_answers": [
+	//         "blue",
+	//         "red",
+	//         "green"
+	//     ],
+	//     "category": "History",
+	//     "type": "multiple",
+	//     "difficulty": "hard",
+	//     "question": "What is my favourite colour?",
+	//     "correct_answer": "pink"
+	// }
+	// buildJSON = (question, correct_answer, incorrect_answers) => {
+	// 	let stringJSON = {
+	// 		incorrect_answers: [...incorrect_answers],
+	// 		category: "History",
+	// 		type: "multiple",
+	// 		difficulty: "hard",
+	// 		question: question,
+	// 		correct_answer: correct_answer,
+	// 	};
+	// 	return stringJSON;
+	// };
+
+	doCrud = (question, answers) => {
+		let incorrect_answers = answers.split(",");
+		let correct_answer = incorrect_answers.shift();
+		console.log(question, correct_answer, incorrect_answers);
+		// this.buildJSON(question, correct_answer, incorrect_answers).then(
+		// 	(stringJSON) => {
+		// 		console.log(stringJSON);
+		// 	}
+		// );
+	};
+
 	// React Docs toggle example: https://reactjs.org/docs/handling-events.html
-	toggleModal = () => {
+	toggleModal = (question, answers) => {
+		// must include event as first parameter
+		if (question) this.doCrud(question, answers);
 		this.setState({
 			activeModal: !this.state.activeModal,
 		});
