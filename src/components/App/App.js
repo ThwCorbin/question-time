@@ -84,9 +84,10 @@ class App extends Component {
 	};
 
 	// React Docs toggle example: https://reactjs.org/docs/handling-events.html
-	toggleModal = (question, answers) => {
+	toggleModal = (cRUD, question, answers) => {
 		// must include event as first parameter
-		if (question) this.addQuestion(question, answers);
+		// if (question) this.addQuestion(question, answers);
+		console.log(cRUD, question, answers);
 		this.setState({
 			activeModal: !this.state.activeModal,
 		});
@@ -117,8 +118,8 @@ class App extends Component {
 	};
 
 	handleCrudEvent = (e) => {
-		console.log(e.target.textContent);
-		this.toggleModal();
+		let cRUD = e.target.textContent;
+		this.toggleModal(cRUD);
 	}; //addEvent
 
 	handleAnswerEvent = (e) => {
@@ -168,6 +169,7 @@ class App extends Component {
 			})
 			.then((data) => {
 				let questions = this.shuffle(data);
+				console.log(questions[0]);
 				return questions;
 			})
 			.then((questions) => {
