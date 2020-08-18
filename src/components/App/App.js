@@ -30,33 +30,63 @@ class App extends Component {
 	// 	console.log(e);
 	// }; //editEvent
 
-	// buildJSON = (question, correct_answer, incorrect_answers) => {
-	// 	let stringJSON = {
-	// 		incorrect_answers: [...incorrect_answers],
-	// 		category: "History",
-	// 		type: "multiple",
-	// 		difficulty: "hard",
-	// 		question: question,
-	// 		correct_answer: correct_answer,
-	// 	};
-	// 	return stringJSON;
-	// };
+	buildQuestion = (question, correct_answer, incorrect_answers) => {
+		let questionObj = {
+			incorrect_answers: [...incorrect_answers],
+			category: "History",
+			type: "multiple",
+			difficulty: "hard",
+			question: question,
+			correct_answer: correct_answer,
+		};
+		console.log(questionObj);
+		return questionObj;
+	};
 
-	doCrud = (question, answers) => {
-		let incorrect_answers = answers.split(",");
+	addQuestion = (question, answers) => {
+		let answers_arr = answers.split(",");
+		let incorrect_answers = answers_arr.map((answer) => answer.trim());
 		let correct_answer = incorrect_answers.shift();
-		console.log(question, correct_answer, incorrect_answers);
-		// this.buildJSON(question, correct_answer, incorrect_answers).then(
-		// 	(stringJSON) => {
-		// 		console.log(stringJSON);
-		// 	}
-		// );
+		// console.log(question, correct_answer, incorrect_answers);
+		let data = this.buildQuestion(question, correct_answer, incorrect_answers);
+		console.log(data);
+
+		fetch(url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log("Successfully added question", data);
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+
+		// * Fetch takes data and returns below
+		// {
+		// 	"incorrect_answers": [
+		// 	  "blue cow",
+		// 	  "red cow",
+		// 	  "deer"
+		// 	],
+		// 	"_id": "5f3bc6700806650017b269d6",
+		// 	"category": "History",
+		// 	"type": "multiple",
+		// 	"difficulty": "hard",
+		// 	"question": "How now?",
+		// 	"correct_answer": "Brown cow",
+		// 	"__v": 0
+		//   }
 	};
 
 	// React Docs toggle example: https://reactjs.org/docs/handling-events.html
 	toggleModal = (question, answers) => {
 		// must include event as first parameter
-		if (question) this.doCrud(question, answers);
+		if (question) this.addQuestion(question, answers);
 		this.setState({
 			activeModal: !this.state.activeModal,
 		});
