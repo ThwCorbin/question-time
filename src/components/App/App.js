@@ -27,12 +27,8 @@ class App extends Component {
 	// 	console.log(e);
 	// }; //deleteEvent
 
-	// editEvent = (e) => {
-	// 	console.log(e);
-	// }; //editEvent
-
 	buildQuestion = (question, correct_answer, incorrect_answers) => {
-		let questionObj = {
+		let questionObject = {
 			incorrect_answers: [...incorrect_answers],
 			category: "History",
 			type: "multiple",
@@ -40,15 +36,51 @@ class App extends Component {
 			question: question,
 			correct_answer: correct_answer,
 		};
-		console.log(questionObj);
-		return questionObj;
+		return questionObject;
+	};
+
+	editQuestion = (question, answers) => {
+		let answers_arr = answers.split(",");
+		let incorrect_answers = answers_arr.map((answer) => answer.trim());
+		let correct_answer = incorrect_answers.shift();
+		let data = this.buildQuestion(question, correct_answer, incorrect_answers);
+		console.log(data);
+
+		fetch(`${url}/${this.state.questionObj._id}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		})
+			.then((res) => res.json())
+			.then((questionObj) => {
+				console.log(`Successfully edited question:`, questionObj);
+				let answer = questionObj.correct_answer;
+				let answers = this.shuffle([answer, ...questionObj.incorrect_answers]);
+				let questionsUpdate = this.state.questions;
+				questionsUpdate.shift();
+				questionsUpdate.unshift(questionObj);
+
+				this.setState({
+					questions: questionsUpdate,
+					questionObj: questionObj,
+					question: questionObj.question,
+					answer: answer,
+					answers: answers,
+					correctIdx: answers.indexOf(answer),
+					CRUD: null,
+				}); //setState
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
 	};
 
 	addQuestion = (question, answers) => {
 		let answers_arr = answers.split(",");
 		let incorrect_answers = answers_arr.map((answer) => answer.trim());
 		let correct_answer = incorrect_answers.shift();
-		// console.log(question, correct_answer, incorrect_answers);
 		let data = this.buildQuestion(question, correct_answer, incorrect_answers);
 		console.log(data);
 
@@ -60,12 +92,22 @@ class App extends Component {
 			body: JSON.stringify(data),
 		})
 			.then((res) => res.json())
-			.then((data) => {
-				console.log("Successfully added question", data);
-				// Prepare for next handleCrudEvent
+			.then((questionObj) => {
+				console.log(`Successfully added question:`, questionObj);
+				let answer = questionObj.correct_answer;
+				let answers = this.shuffle([answer, ...questionObj.incorrect_answers]);
+				let questionsUpdate = this.state.questions;
+				questionsUpdate.unshift(questionObj);
+
 				this.setState({
+					questions: questionsUpdate,
+					questionObj: questionObj,
+					question: questionObj.question,
+					answer: answer,
+					answers: answers,
+					correctIdx: answers.indexOf(answer),
 					CRUD: null,
-				});
+				}); //setState
 			})
 			.catch((error) => {
 				console.error("Error:", error);
@@ -92,6 +134,8 @@ class App extends Component {
 		if (crudOrNull === null) {
 			this.state.CRUD === "ADD"
 				? this.addQuestion(question, answers)
+				: this.state.CRUD === "EDIT"
+				? this.editQuestion(question, answers)
 				: console.log(crudOrNull);
 		} else {
 			return;
@@ -160,7 +204,7 @@ class App extends Component {
 		//* present next question after 3 seconds
 		setTimeout(() => {
 			this.nextQuestion(answers);
-		}, 3000);
+		}, 2000);
 	}; //handleAnswerEvent
 
 	//* shuffle a something array and return it
@@ -206,6 +250,9 @@ class App extends Component {
 					answers: answers,
 					correctIdx: answers.indexOf(answer),
 				}); //setState
+			})
+			.catch((error) => {
+				console.error("Error:", error);
 			});
 	}; //getQuestions
 
