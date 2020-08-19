@@ -37,6 +37,30 @@ class App extends Component {
 
 	deleteQuestion = () => {
 		console.log(this.state.questionObj._id);
+		fetch(`${url}/${this.state.questionObj._id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((res) => res.json())
+			.then((questionObj) => {
+				console.log(`Successfully deleted question:`, questionObj);
+
+				//* Load next question
+				this.nextQuestion();
+
+				//* Remove question deleted from API from local array
+				let questionsUpdate = this.state.questions;
+				questionsUpdate.pop();
+
+				this.setState({
+					questions: questionsUpdate,
+				});
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
 	};
 
 	editQuestion = (question, answers) => {
@@ -162,16 +186,21 @@ class App extends Component {
 	}; //toggleModal()
 
 	nextQuestion = (answersHTMLCollection) => {
-		//* reset the li color and background color
-		let listOfLi = Array.from(answersHTMLCollection);
-		listOfLi.forEach((li) => {
-			li.style.backgroundColor = "#c0c0c0";
-			li.style.color = "#2958aa";
-		});
+		//* if not undefined...
+		if (answersHTMLCollection) {
+			//* reset the li color and background color
+			let listOfLi = Array.from(answersHTMLCollection);
+			listOfLi.forEach((li) => {
+				li.style.backgroundColor = "#c0c0c0";
+				li.style.color = "#2958aa";
+			});
+		}
+
 		//* move current question to the end of the questions array
 		let lastQuestion = this.state.questions.shift();
 		let questions = this.state.questions;
 		questions.push(lastQuestion);
+
 		//* set state with new question object
 		let answer = questions[0].correct_answer;
 		let answers = this.shuffle([answer, ...questions[0].incorrect_answers]);
@@ -312,24 +341,3 @@ class App extends Component {
 } //App
 
 export default App;
-
-// ASCII codes in question Strings
-// &#039; -> '
-// &amp; -> & ->  Heckler
-// &eacute
-// &quot;
-
-// .then((data) => {
-// 	let dataFix;
-// 	dataFix = data.map((object) => {
-// 		let string1, string2, string3;
-// 		string1 = object.question.replace(/&#039;/g, "'");
-// 		object.question = string1;
-// 		string2 = object.question.replace(/&eacute;/g, "e");
-// 		object.question = string2;
-// 		string3 = object.question.replace(/&quot;/g, '"');
-// 		console.log(string3);
-// 		return (object.question = string3);
-// 	});
-// 	return dataFix;
-// })
