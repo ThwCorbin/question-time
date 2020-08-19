@@ -36,7 +36,6 @@ class App extends Component {
 	};
 
 	deleteQuestion = () => {
-		console.log(this.state.questionObj._id);
 		fetch(`${url}/${this.state.questionObj._id}`, {
 			method: "DELETE",
 			headers: {
@@ -68,7 +67,6 @@ class App extends Component {
 		let incorrect_answers = answers_arr.map((answer) => answer.trim());
 		let correct_answer = incorrect_answers.shift();
 		let data = this.buildQuestion(question, correct_answer, incorrect_answers);
-		console.log(data);
 
 		fetch(`${url}/${this.state.questionObj._id}`, {
 			method: "PUT",
@@ -106,7 +104,6 @@ class App extends Component {
 		let incorrect_answers = answers_arr.map((answer) => answer.trim());
 		let correct_answer = incorrect_answers.shift();
 		let data = this.buildQuestion(question, correct_answer, incorrect_answers);
-		console.log(data);
 
 		fetch(url, {
 			method: "POST",
