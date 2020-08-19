@@ -100,11 +100,19 @@ class App extends Component {
 
 	// React Docs toggle example: https://reactjs.org/docs/handling-events.html
 	toggleModal = (crudOrNull, question, answers) => {
-		this.checkCRUD(crudOrNull, question, answers);
-		this.setState({
-			activeModal: !this.state.activeModal,
-			CRUD: crudOrNull,
-		});
+		if (typeof crudOrNull === "object" && crudOrNull !== null) {
+			//If user cancelled CRUD operation
+			this.setState({
+				activeModal: !this.state.activeModal,
+				CRUD: null,
+			});
+		} else {
+			this.checkCRUD(crudOrNull, question, answers);
+			this.setState({
+				activeModal: !this.state.activeModal,
+				CRUD: crudOrNull,
+			});
+		}
 	}; //toggleModal()
 
 	nextQuestion = (answersHTMLCollection) => {
@@ -134,7 +142,6 @@ class App extends Component {
 	handleCrudEvent = (e) => {
 		// Check if create, update, or delete
 		let CRUD = e.target.textContent;
-		console.log(CRUD);
 		this.toggleModal(CRUD);
 	}; //handleCrudEvent
 
