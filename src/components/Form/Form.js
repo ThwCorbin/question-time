@@ -21,7 +21,7 @@ class Form extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.modalCallback(this.state.question, this.state.answers);
+		this.props.modalCallback(null, this.state.question, this.state.answers);
 	}
 
 	render() {

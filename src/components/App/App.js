@@ -19,6 +19,7 @@ class App extends Component {
 			answers: [],
 			answer: "",
 			correctIdx: 0,
+			CRUD: null,
 		};
 	} //constructor
 
@@ -61,6 +62,10 @@ class App extends Component {
 			.then((res) => res.json())
 			.then((data) => {
 				console.log("Successfully added question", data);
+				// Prepare for next handleCrudEvent
+				this.setState({
+					CRUD: null,
+				});
 			})
 			.catch((error) => {
 				console.error("Error:", error);
@@ -83,15 +88,24 @@ class App extends Component {
 		//   }
 	};
 
+	checkCRUD = (crudOrNull, question, answers) => {
+		if (crudOrNull === null) {
+			this.state.CRUD === "ADD"
+				? this.addQuestion(question, answers)
+				: console.log(crudOrNull);
+		} else {
+			return;
+		}
+	};
+
 	// React Docs toggle example: https://reactjs.org/docs/handling-events.html
-	toggleModal = (cRUD, question, answers) => {
-		// must include event as first parameter
-		// if (question) this.addQuestion(question, answers);
-		console.log(cRUD, question, answers);
+	toggleModal = (crudOrNull, question, answers) => {
+		this.checkCRUD(crudOrNull, question, answers);
 		this.setState({
 			activeModal: !this.state.activeModal,
+			CRUD: crudOrNull,
 		});
-	};
+	}; //toggleModal()
 
 	nextQuestion = (answersHTMLCollection) => {
 		//* reset the li color and background color
@@ -118,9 +132,11 @@ class App extends Component {
 	};
 
 	handleCrudEvent = (e) => {
-		let cRUD = e.target.textContent;
-		this.toggleModal(cRUD);
-	}; //addEvent
+		// Check if create, update, or delete
+		let CRUD = e.target.textContent;
+		console.log(CRUD);
+		this.toggleModal(CRUD);
+	}; //handleCrudEvent
 
 	handleAnswerEvent = (e) => {
 		let answers = e.target.parentElement.children;
@@ -138,7 +154,7 @@ class App extends Component {
 		setTimeout(() => {
 			this.nextQuestion(answers);
 		}, 3000);
-	}; //answerEvent
+	}; //handleAnswerEvent
 
 	//* shuffle a something array and return it
 	shuffle = (something) => {
