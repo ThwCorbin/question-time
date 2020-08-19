@@ -6,12 +6,12 @@ import Form from "../Form/Form";
 // let App = document.querySelector(".App");
 
 function Modal(props) {
-	const { activeModal, modalCallback } = props;
+	const { activeModal, modalCallback, cRUD } = props;
 	if (activeModal) {
 		return ReactDOM.createPortal(
 			<div className="modal">
 				<div className="modal-content">
-					<Form modalCallback={modalCallback} />
+					<Form modalCallback={modalCallback} cRUD={cRUD} />
 				</div>
 			</div>,
 			document.getElementById("root")

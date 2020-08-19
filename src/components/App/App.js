@@ -23,10 +23,6 @@ class App extends Component {
 		};
 	} //constructor
 
-	// deleteEvent = (e) => {
-	// 	console.log(e);
-	// }; //deleteEvent
-
 	buildQuestion = (question, correct_answer, incorrect_answers) => {
 		let questionObject = {
 			incorrect_answers: [...incorrect_answers],
@@ -37,6 +33,10 @@ class App extends Component {
 			correct_answer: correct_answer,
 		};
 		return questionObject;
+	};
+
+	deleteQuestion = () => {
+		console.log(this.state.questionObj._id);
 	};
 
 	editQuestion = (question, answers) => {
@@ -136,6 +136,8 @@ class App extends Component {
 				? this.addQuestion(question, answers)
 				: this.state.CRUD === "EDIT"
 				? this.editQuestion(question, answers)
+				: this.state.CRUD === "DELETE"
+				? this.deleteQuestion()
 				: console.log(crudOrNull);
 		} else {
 			return;
@@ -236,7 +238,6 @@ class App extends Component {
 			})
 			.then((data) => {
 				let questions = this.shuffle(data);
-				console.log(questions[0]);
 				return questions;
 			})
 			.then((questions) => {
@@ -292,12 +293,13 @@ class App extends Component {
 				<Modal
 					activeModal={this.state.activeModal}
 					modalCallback={this.toggleModal}
+					cRUD={this.state.CRUD}
 				/>
 				<Header />
 				<Question question={this.state.question} />
 				<ul className="ul-answers">{answersList}</ul>
 				<p className="youCrud">
-					Don't like the question? Change it or add one of your own!
+					You can also create, update, or delete questions!
 				</p>
 				<ul className="ul-crud">{buttonList}</ul>
 			</div>
