@@ -2,7 +2,7 @@
 
 Answer trivia questions! If you don't like the questions, you can change or delete them. You can even add your own questions. You get to ask (and answer) the questions you want during Question Time!
 
-Website:
+Website: https://peaceful-jackson-4fb030.netlify.app/
 
 Repo: https://github.com/ThwCorbin/question-time
 
