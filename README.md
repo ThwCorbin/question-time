@@ -34,7 +34,7 @@ I developed a bronze/silver/gold plan, which is available in the planning direct
 ## Installation
 
 - Fork and clone the repo: https://github.com/ThwCorbin/question-time
-- `git clone` + copy/past clone inside a directory of your choice
+- `git clone` + copy/paste clone inside a directory of your choice
 - `cd` to the question-time directory
 - run `npm i` in the terminal
 - note: you will also need to install mongodb globally
