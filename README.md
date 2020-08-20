@@ -6,7 +6,7 @@ Website: https://peaceful-jackson-4fb030.netlify.app/
 
 Repo: https://github.com/ThwCorbin/question-time
 
-API documentation: http://pub-quiz-game.herokuapp.com/doc -->
+API documentation: http://pub-quiz-game.herokuapp.com/doc
 
 ## Description
 
