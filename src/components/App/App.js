@@ -133,22 +133,6 @@ class App extends Component {
 			.catch((error) => {
 				console.error("Error:", error);
 			});
-
-		// * Fetch takes data and returns below
-		// {
-		// 	"incorrect_answers": [
-		// 	  "blue cow",
-		// 	  "red cow",
-		// 	  "deer"
-		// 	],
-		// 	"_id": "5f3bc6700806650017b269d6",
-		// 	"category": "History",
-		// 	"type": "multiple",
-		// 	"difficulty": "hard",
-		// 	"question": "How now?",
-		// 	"correct_answer": "Brown cow",
-		// 	"__v": 0
-		//   }
 	};
 
 	checkCRUD = (crudOrNull, question, answers) => {
@@ -168,7 +152,7 @@ class App extends Component {
 	// React Docs toggle example: https://reactjs.org/docs/handling-events.html
 	toggleModal = (crudOrNull, question, answers) => {
 		if (typeof crudOrNull === "object" && crudOrNull !== null) {
-			//If user cancelled CRUD operation
+			//* If user cancelled CRUD operation
 			this.setState({
 				activeModal: !this.state.activeModal,
 				CRUD: null,
@@ -212,7 +196,7 @@ class App extends Component {
 	};
 
 	handleCrudEvent = (e) => {
-		// Check if create, update, or delete
+		//* Check if create, update, or delete
 		let CRUD = e.target.textContent;
 		this.toggleModal(CRUD);
 	}; //handleCrudEvent
@@ -232,7 +216,7 @@ class App extends Component {
 		//* present next question after 3 seconds
 		setTimeout(() => {
 			this.nextQuestion(answers);
-		}, 2000);
+		}, 9000);
 	}; //handleAnswerEvent
 
 	//* shuffle a something array and return it
