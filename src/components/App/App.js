@@ -216,7 +216,7 @@ class App extends Component {
 		//* present next question after 3 seconds
 		setTimeout(() => {
 			this.nextQuestion(answers);
-		}, 9000);
+		}, 1500);
 	}; //handleAnswerEvent
 
 	//* shuffle a something array and return it
