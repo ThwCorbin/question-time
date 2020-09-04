@@ -10,7 +10,7 @@ API documentation: http://pub-quiz-game.herokuapp.com/doc
 
 ## Description
 
-Question Time is a React front end that uses a MongoDB, Express, and Node.js back end that I built for an API project called [pub-quiz](https://github.com/ThwCorbin/pub-quiz "repo on GitHub"). The JSON API I built provides access to trivia questions for a pub quiz game.[1] For the purposes of this project, I will use one trivia category: History. A user will see a question on page load. The user can answer the question and then see the answer. The app presents the user with another question. The user can change or delete the question and answers. The user can add a question. The user has access to the Pub Quiz API! Scary. But fun!
+Question Time is a React front end that uses a MongoDB, Express, and Node.js back end that I built for an API project called [Pub Quiz](https://github.com/ThwCorbin/pub-quiz "repo on GitHub"). The JSON API I built provides access to trivia questions for a pub quiz game.[1] For the purposes of this project, I will use one trivia category: History. A user will see a question on page load. The user can answer the question and then see the answer. The app presents the user with another question. The user can change or delete the question and answers. The user can add a question. The user has access to the Pub Quiz API! Scary. But fun!
 
 ![Question Time screenshot](./question-time.png "Question Time")
 
